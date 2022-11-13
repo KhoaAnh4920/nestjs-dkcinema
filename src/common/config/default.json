@@ -1,0 +1,13 @@
+{
+    "db": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "name": "dkcinema",
+      "user": "root",
+      "password": "123456"
+    },
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8080
+    }
+  }
