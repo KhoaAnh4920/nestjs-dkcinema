@@ -124,6 +124,20 @@ export class User {
   })
   address: string;
 
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  avatar?: string;
+
+  @Column({
+    name: 'isDelete',
+    type: 'boolean',
+    nullable: true,
+    default: false,
+  })
+  isDelete?: boolean;
+
   @ManyToOne(() => Role, (role) => role.id, {
     cascade: true,
     onDelete: 'CASCADE',

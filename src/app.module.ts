@@ -5,9 +5,16 @@ import config from './common/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
 import { RoleModule } from './modules/role/role.module';
+import { MorganModule, MorganInterceptor } from 'nest-morgan';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CustomerService } from './modules/customer/customer.service';
+import { CustomerModule } from './modules/customer/customer.module';
+import { OtpModule } from './modules/otp/otp.module';
+import { CacheModule } from './modules/shared/cache/cache.module';
 
 @Module({
   imports: [
+    MorganModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
@@ -32,9 +39,27 @@ import { RoleModule } from './modules/role/role.module';
         };
       },
     }),
+    CacheModule.forRoot({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        const cacheOptions = configService.get('redis') || {};
+        console.log('cacheOptions:', cacheOptions);
+        return cacheOptions;
+      },
+      inject: [ConfigService],
+    }),
     AuthModule,
     UsersModule,
     RoleModule,
+    CustomerModule,
+    OtpModule.forRoot(),
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: MorganInterceptor('combined'),
+    },
+    CustomerService,
   ],
 })
 export class AppModule {}

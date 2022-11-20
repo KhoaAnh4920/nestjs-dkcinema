@@ -1,14 +1,15 @@
 import {
   Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
+  // JoinColumn,
+  // ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { User } from '../users/user.entity';
+import { RoleCode } from './role.enum';
 
 @Entity('role')
 export class Role {
@@ -21,7 +22,7 @@ export class Role {
     length: 100,
     nullable: false,
   })
-  name: string;
+  name: RoleCode;
 
   @Exclude()
   @Column({
