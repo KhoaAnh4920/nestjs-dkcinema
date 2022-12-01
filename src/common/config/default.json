@@ -9,5 +9,9 @@
     "server": {
       "host": "0.0.0.0",
       "port": 8080
+    },
+    "email":{
+      "EMAIL_ID": "khoadido@gmail.com",
+      "EMAIL_PASS": "rronikratjiqmxdu"
     }
   }

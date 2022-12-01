@@ -15,9 +15,17 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { AdminCreateUserDto, RequestSendOTPDto } from './user.dto';
+import {
+  AdminCreateUserDto,
+  RequestSendOTPDto,
+  RequestVerifyEmailDto,
+} from './user.dto';
 import { ISingleRes } from '../shared/response';
-import { AdminCreateUserViewReq, UserResponse } from './user.type';
+import {
+  AdminCreateUserViewReq,
+  UserResponse,
+  VerifyEmailViewReq,
+} from './user.type';
 import { UserPresenter } from './user.presenter';
 import { Response } from 'express';
 
@@ -84,5 +92,24 @@ export class UsersController {
       data: { otpCode },
     };
     return res.status(HttpStatus.OK).send(singleRes);
+  }
+
+  @ApiTags('Customer')
+  @Post('/verify/users')
+  @ApiOperation({ summary: 'Verify email' })
+  @ApiOkResponse({
+    status: HttpStatus.OK,
+    description: 'Verify email',
+  })
+  public async handleVerifyEmail(
+    @Body() payload: RequestVerifyEmailDto,
+    @Res() res: Response,
+  ): Promise<any> {
+    const body = new VerifyEmailViewReq(payload.userId);
+    const message = await this.usersService.userVerifyEmail(body);
+    return res.status(HttpStatus.OK).send({
+      success: message,
+      message: 'Active user successfully',
+    });
   }
 }

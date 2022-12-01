@@ -154,3 +154,11 @@ export class UserLoginResponse extends UserResponse {
 //     readonly gender?: UserGender,
 //     readonly avatar?: string,
 //     readonly dob?: Date,
+
+export interface VerifyEmailView {
+  readonly userId: number;
+}
+
+export class VerifyEmailViewReq implements VerifyEmailView {
+  constructor(readonly userId: number) {}
+}

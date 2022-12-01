@@ -11,6 +11,14 @@ import { CustomerService } from './modules/customer/customer.service';
 import { CustomerModule } from './modules/customer/customer.module';
 import { OtpModule } from './modules/otp/otp.module';
 import { CacheModule } from './modules/shared/cache/cache.module';
+import { MailModule } from './modules/mail/mail.module';
+import { MovieTheaterModule } from './modules/movie-theater/movie-theater.module';
+import { UploadModule } from './modules/upload/upload.module';
+import { RoomModule } from './modules/room/room.module';
+import { SeetModule } from './modules/seet/seet.module';
+import { TypeSeetModule } from './modules/type-seet/type-seet.module';
+import { ShowTimeModule } from './modules/show-time/show-time.module';
+import { TicketModule } from './modules/ticket/ticket.module';
 
 @Module({
   imports: [
@@ -53,6 +61,14 @@ import { CacheModule } from './modules/shared/cache/cache.module';
     RoleModule,
     CustomerModule,
     OtpModule.forRoot(),
+    MailModule,
+    MovieTheaterModule,
+    UploadModule,
+    RoomModule,
+    SeetModule,
+    TypeSeetModule,
+    ShowTimeModule,
+    TicketModule,
   ],
   providers: [
     {

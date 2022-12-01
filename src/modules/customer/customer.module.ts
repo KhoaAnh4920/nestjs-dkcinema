@@ -7,12 +7,15 @@ import { User } from '../users/user.entity';
 import { OtpModule } from '../otp/otp.module';
 import { OtpService } from '../otp/otp.service';
 import { RoleModule } from '../role/role.module';
+import { MailModule } from '../mail/mail.module';
+
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     ConfigModule,
     OtpModule,
     RoleModule,
+    MailModule,
   ],
   controllers: [CustomerController],
   providers: [CustomerService, ConfigService, OtpService],

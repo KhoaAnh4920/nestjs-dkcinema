@@ -8,6 +8,7 @@ import {
   CreateUserModelReq,
   ICreateUserViewReq,
   ISendOtpViewReq,
+  VerifyEmailView,
 } from './user.type';
 import { UserUtil } from '../shared/util';
 import { ContentRequestOTP } from '../otp/otp.enum';
@@ -120,5 +121,19 @@ export class UsersService {
     // }
 
     return otpCode;
+  }
+
+  public async userVerifyEmail(payload: VerifyEmailView): Promise<boolean> {
+    console.log('payload', payload);
+    const { userId } = payload;
+    const user = await this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.id = :userId', { userId })
+      .getOne();
+    console.log('Check user', user);
+    user.status = 1;
+    if (!user) throw new AppError(ERROR_CODE.USER_NOT_FOUND);
+    await this.usersRepository.save(user);
+    return true;
   }
 }

@@ -113,3 +113,10 @@ export class RequestSendOTPDto {
   @IsEnum(RandomTypes)
   format!: RandomTypes;
 }
+
+export class RequestVerifyEmailDto {
+  @ApiProperty({ example: 1, description: 'UserId' })
+  @IsInt()
+  @IsDefined()
+  userId: number;
+}

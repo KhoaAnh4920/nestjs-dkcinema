@@ -10,6 +10,7 @@ import { ContentRequestOTP } from '../otp/otp.enum';
 import { OtpService } from '../otp/otp.service';
 import { RoleCode } from '../role/role.enum';
 import { RoleService } from '../role/role.service';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class CustomerService {
@@ -18,6 +19,7 @@ export class CustomerService {
     private usersRepository: Repository<User>,
     private readonly otpService: OtpService,
     private readonly roleService: RoleService,
+    private readonly mailService: MailService,
   ) {}
 
   public async createUser(createUserReq: ICreateUserViewReq): Promise<User> {
@@ -59,8 +61,14 @@ export class CustomerService {
       createUserReq.avatar,
       createUserReq.dob,
     );
-
     let user = new User();
+    // send mail //
+    const token = Math.floor(1000 + Math.random() * 9000).toString();
+    await this.mailService.sendUserConfirmation(
+      email,
+      createUserReq.fullName,
+      token,
+    );
     user = this.usersRepository.merge(user, createUserModelReq);
     return this.usersRepository.save(user);
   }
