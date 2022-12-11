@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoleModule } from '../role/role.module';
@@ -6,6 +6,7 @@ import { MovieTheaterController } from './movie-theater.controller';
 import { ImageMovieTheater, Movietheater } from './movie-theater.entity';
 import { MovieTheaterService } from './movie-theater.service';
 
+@Global()
 @Module({
   imports: [
     TypeOrmModule.forFeature([Movietheater, ImageMovieTheater]),

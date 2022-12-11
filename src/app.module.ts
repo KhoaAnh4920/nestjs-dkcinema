@@ -19,6 +19,7 @@ import { SeetModule } from './modules/seet/seet.module';
 import { TypeSeetModule } from './modules/type-seet/type-seet.module';
 import { ShowTimeModule } from './modules/show-time/show-time.module';
 import { TicketModule } from './modules/ticket/ticket.module';
+import { MovieModule } from './modules/movie/movie.module';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import { TicketModule } from './modules/ticket/ticket.module';
     TypeSeetModule,
     ShowTimeModule,
     TicketModule,
+    MovieModule,
   ],
   providers: [
     {

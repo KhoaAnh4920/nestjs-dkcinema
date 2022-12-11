@@ -64,7 +64,7 @@ export class MovieTheaterService {
       .createQueryBuilder('ct')
       .innerJoinAndSelect('ct.items', 'images')
       .where('ct.id = :id', { id })
-      .getMany();
+      .getOne();
     return result;
   }
 }

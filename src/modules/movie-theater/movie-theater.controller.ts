@@ -25,7 +25,7 @@ export class MovieTheaterController {
   @ApiResponse({
     status: HttpStatus.CREATED,
   })
-  public async adminCreateUser(
+  public async adminCreateMovieTheater(
     @Body() body: AdminCreateMovieTheaterDto,
     @Res() res: Response,
   ) {

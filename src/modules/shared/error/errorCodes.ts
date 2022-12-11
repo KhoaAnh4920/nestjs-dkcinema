@@ -18,6 +18,7 @@ enum ERROR_CODE {
   EMAIL_OR_PHONE_EXISTS = 'EMAIL_OR_PHONE_EXISTS',
   YOU_HAVE_BEEN_SPAM = 'YOU_HAVE_BEEN_SPAM',
   YOU_HAVE_RECEIVED_CODE = 'YOU_HAVE_RECEIVED_CODE',
+  THEATER_NOT_FOUND = 'THEATER_NOT_FOUND',
 }
 
 const ErrorList = {
@@ -64,6 +65,10 @@ const ErrorList = {
   [ERROR_CODE.YOU_HAVE_RECEIVED_CODE]: {
     statusCode: HttpStatus.BAD_REQUEST,
     message: 'You have been received code, please check your sms',
+  },
+  [ERROR_CODE.THEATER_NOT_FOUND]: {
+    statusCode: HttpStatus.BAD_REQUEST,
+    message: 'Theater not found',
   },
 };
 export { ErrorDetails, ERROR_CODE, ErrorList };

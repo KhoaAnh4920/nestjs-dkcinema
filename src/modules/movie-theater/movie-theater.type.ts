@@ -9,12 +9,13 @@ export interface ICreateMovieTheaterViewReq {
 }
 
 export interface IMovieTheater {
-  name: string;
-  cityCode: number;
-  districtCode: number;
-  wardCode: number;
-  address: string;
-  phoneNumber: string;
+  readonly id: number;
+  readonly name: string;
+  readonly cityCode: number;
+  readonly districtCode: number;
+  readonly wardCode: number;
+  readonly address: string;
+  readonly phoneNumber: string;
 }
 
 export interface ICreateImagesMovieTheaterViewReq {

@@ -24,6 +24,7 @@ export class Movietheater {
     type: 'varchar',
     length: '255',
     nullable: false,
+    default: '',
   })
   name: string;
 
@@ -52,7 +53,8 @@ export class Movietheater {
     name: 'address',
     type: 'varchar',
     length: '255',
-    nullable: false,
+    nullable: true,
+    default: '180 Cao Lỗ',
   })
   address: string;
 
@@ -65,6 +67,7 @@ export class Movietheater {
     type: 'varchar',
     length: '11',
     nullable: false,
+    default: '',
   })
   phoneNumber: string;
 
